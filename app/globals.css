@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Pastel Color Palette - RGB values */
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Pastel colors defined as hex for Tailwind v4 compatibility */
+  --color-primary: #c896f0;
+  --color-primary-light: #dcb4ff;
+  --color-primary-dark: #9d5ac8;
+  --color-secondary: #96c8ff;
+  --color-secondary-light: #b4dcff;
+  --color-secondary-dark: #5a8ec4;
+  --color-accent: #ffb496;
+  --color-accent-light: #ffd2b4;
+  --color-border: #e6dcf0;
+  --color-card: #ffffff;
+  --color-text-muted: #78829e;
+  --color-background: #fffafa;
+  --color-foreground: #2d323c;
+
+  /* Default shadcn colors for compatibility */
+  --color-card: #ffffff;
+  --color-card-foreground: #2d323c;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2d323c;
+  --color-primary-foreground: #ffffff;
+  --color-secondary-foreground: #2d323c;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #78829e;
+  --color-accent-foreground: #2d323c;
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.577 0.245 27.325);
+  --color-input: #eae8f0;
+  --color-ring: #b5a5d1;
+
+  /* Chart colors */
+  --color-chart-1: oklch(0.646 0.222 41.116);
+  --color-chart-2: oklch(0.6 0.118 184.704);
+  --color-chart-3: oklch(0.398 0.07 227.392);
+  --color-chart-4: oklch(0.828 0.189 84.429);
+  --color-chart-5: oklch(0.769 0.188 70.08);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Sidebar colors */
+  --color-sidebar: #ffffff;
+  --color-sidebar-foreground: #2d323c;
+  --color-sidebar-primary: #2d323c;
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-accent: #f5f5f5;
+  --color-sidebar-accent-foreground: #2d323c;
+  --color-sidebar-border: #eae8f0;
+  --color-sidebar-ring: #b5a5d1;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer utilities {
+  /* Updated gradient-primary to use darker colors for better contrast with white text */
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary-dark via-primary to-secondary-dark;
+  }
+  .gradient-pastel {
+    @apply bg-gradient-to-br from-primary-light via-secondary-light to-accent-light;
+  }
+  .soft-shadow {
+    @apply shadow-lg shadow-primary/10;
+  }
+  .card-shadow {
+    @apply shadow-sm shadow-primary/5;
+  }
+
+  /* Added scroll animations for brand and creator carousels */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+  }
+
+  .animate-scroll-right {
+    animation: scroll-right 30s linear infinite;
+  }
+
+  /* Added slide-in animation for hero service cards */
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Added infinite vertical scroll animation for hero tiles */
+  @keyframes scrollVertical {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+}
